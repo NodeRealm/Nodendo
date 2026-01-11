@@ -13,7 +13,7 @@ const componentTemplates = {
   },
   navbar: {
     label: "Navbar",
-    html: "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark rounded-3\" data-role=\"navbar\"><div class=\"container-fluid\"><a class=\"navbar-brand\" href=\"#\" data-editable=\"true\">Brand</a><button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navMenu\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"navMenu\"><ul class=\"navbar-nav ms-auto\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\" data-editable=\"true\">Home</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\" data-editable=\"true\">Features</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\" data-editable=\"true\">Pricing</a></li></ul></div></div></nav>"
+    html: "<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark rounded-3\" data-role=\"navbar\"><div class=\"container-fluid\"><a class=\"navbar-brand\" href=\"#\" data-editable=\"true\">Brand</a><button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navMenu\"><span class=\"navbar-toggler-icon\"></span></button><div class=\"collapse navbar-collapse\" id=\"navMenu\"><ul class=\"navbar-nav ms-auto\"><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\" data-editable=\"true\">Home</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\" data-editable=\"true\">Features</a></li><li class=\"nav-item\"><a class=\"nav-link\" href=\"#\" data-editable=\"true\">Pricing</a></li></ul><div class=\"btn-group ms-lg-3 mt-3 mt-lg-0\" role=\"group\" aria-label=\"Theme\"><button class=\"btn btn-sm btn-outline-light\" data-theme=\"dark\">Dark</button><button class=\"btn btn-sm btn-outline-light\" data-theme=\"light\">Light</button></div></div></div></nav>"
   },
   card: {
     label: "Card",
@@ -51,7 +51,6 @@ const downloadProjectButton = document.getElementById("downloadProject");
 const importButton = document.getElementById("importProject");
 const importInput = document.getElementById("importInput");
 const previewButtons = document.querySelectorAll("[data-preview]");
-const themeButtons = document.querySelectorAll("[data-theme]");
 const customCssInput = document.getElementById("customCss");
 
 const inspectorEmpty = document.getElementById("inspectorEmpty");
@@ -66,6 +65,7 @@ const deleteButton = document.getElementById("deleteBlock");
 const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
 
 let selectedBlock = null;
+let activeTheme = document.body.dataset.theme || "dark";
 
 const togglePlaceholder = () => {
   const placeholder = canvas.querySelector(".canvas-placeholder");
@@ -278,13 +278,20 @@ previewButtons.forEach((button) => {
   });
 });
 
-themeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const theme = button.dataset.theme;
-    themeButtons.forEach((btn) => btn.classList.remove("active"));
-    button.classList.add("active");
-    document.body.dataset.theme = theme;
+const setTheme = (theme) => {
+  activeTheme = theme;
+  document.body.dataset.theme = theme;
+  document.querySelectorAll("[data-theme]").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.theme === theme);
   });
+};
+
+document.body.addEventListener("click", (event) => {
+  const themeButton = event.target.closest("[data-theme]");
+  if (!themeButton) {
+    return;
+  }
+  setTheme(themeButton.dataset.theme);
 });
 
 customCssInput.addEventListener("input", () => {
@@ -334,10 +341,7 @@ const loadProject = (data) => {
   });
   customCssInput.value = data.customCss || "";
   const theme = data.theme || "dark";
-  document.body.dataset.theme = theme;
-  themeButtons.forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.theme === theme);
-  });
+  setTheme(theme);
   togglePlaceholder();
   setSelectedBlock(null);
 };
@@ -402,6 +406,4 @@ importInput.addEventListener("change", (event) => {
 });
 
 togglePlaceholder();
-if (themeButtons.length) {
-  themeButtons[0].classList.add("active");
-}
+setTheme(activeTheme);
