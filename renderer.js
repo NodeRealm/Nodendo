@@ -51,6 +51,7 @@ const downloadProjectButton = document.getElementById("downloadProject");
 const importButton = document.getElementById("importProject");
 const importInput = document.getElementById("importInput");
 const previewButtons = document.querySelectorAll("[data-preview]");
+const customCssInput = document.getElementById("customCss");
 
 const inspectorEmpty = document.getElementById("inspectorEmpty");
 const inspectorDetails = document.getElementById("inspectorDetails");
@@ -276,9 +277,15 @@ previewButtons.forEach((button) => {
   });
 });
 
+customCssInput.addEventListener("input", () => {
+  customCssInput.dataset.dirty = "true";
+});
+
 const buildExportHtml = () => {
   const blocks = Array.from(canvas.querySelectorAll(".canvas-block__body"));
   const bodyContent = blocks.map((block) => block.innerHTML).join("\n\n");
+  const customCss = customCssInput.value.trim();
+  const styleTag = customCss ? `\n    <style>\n${customCss}\n    </style>` : "";
 
   return `<!DOCTYPE html>
 <html lang=\"en\">
@@ -286,7 +293,7 @@ const buildExportHtml = () => {
     <meta charset=\"UTF-8\" />
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />
     <title>Exported Bootstrap Layout</title>
-    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" />
+    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" />${styleTag}
   </head>
   <body class=\"p-4\">
 ${bodyContent || "    <!-- No components were added. -->"}
@@ -296,7 +303,8 @@ ${bodyContent || "    <!-- No components were added. -->"}
 
 const serializeProject = () => {
   return JSON.stringify({
-    version: 1,
+    version: 2,
+    customCss: customCssInput.value,
     blocks: Array.from(canvas.querySelectorAll(".canvas-block")).map((block) => ({
       type: block.dataset.type,
       label: block.dataset.label,
@@ -313,6 +321,7 @@ const loadProject = (data) => {
     applyBackground(newBlock, block.background || "none");
     canvas.appendChild(newBlock);
   });
+  customCssInput.value = data.customCss || "";
   togglePlaceholder();
   setSelectedBlock(null);
 };

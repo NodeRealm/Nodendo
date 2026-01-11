@@ -114,12 +114,20 @@
                 <option value="accent">Accent</option>
               </select>
             </div>
-            <div class="d-grid gap-2">
+            <div class="d-grid gap-2 mb-4">
               <button class="btn btn-outline-light" id="duplicateBlock">Duplicate</button>
               <button class="btn btn-outline-light" id="moveUp">Move up</button>
               <button class="btn btn-outline-light" id="moveDown">Move down</button>
               <button class="btn btn-outline-danger" id="deleteBlock">Delete</button>
             </div>
+          </div>
+          <div class="inspector-divider"></div>
+          <div class="mb-2">
+            <label class="form-label">Custom CSS</label>
+            <p class="text-secondary small">
+              Add CSS that will be embedded in the exported HTML.
+            </p>
+            <textarea class="form-control" id="customCss" rows="8"></textarea>
           </div>
         </div>
       </aside>

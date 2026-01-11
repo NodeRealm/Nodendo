@@ -22,6 +22,7 @@ Drag and drop Bootstrap editor software.
 - Drag components from the left panel onto the canvas.
 - Click any block to edit its background, duplicate it, or move it.
 - Edit text inline by clicking inside headings or paragraphs.
+- Add custom CSS in the inspector to style the exported layout.
 - Use **Download JSON** / **Import JSON** to save and reopen layouts.
 - Click **Export HTML** to copy or download the generated Bootstrap layout.
 - Click **Clear canvas** to reset the editor.
