@@ -21,6 +21,7 @@ Drag and drop Bootstrap editor software.
 ## Usage
 - Drag components from the left panel onto the canvas.
 - Click any block to edit its background, duplicate it, or move it.
+- Use the **Theme** buttons to switch between light and dark modes.
 - Edit text inline by clicking inside headings or paragraphs.
 - Add custom CSS in the inspector to style the exported layout.
 - Use **Download JSON** / **Import JSON** to save and reopen layouts.

@@ -51,6 +51,7 @@ const downloadProjectButton = document.getElementById("downloadProject");
 const importButton = document.getElementById("importProject");
 const importInput = document.getElementById("importInput");
 const previewButtons = document.querySelectorAll("[data-preview]");
+const themeButtons = document.querySelectorAll("[data-theme]");
 const customCssInput = document.getElementById("customCss");
 
 const inspectorEmpty = document.getElementById("inspectorEmpty");
@@ -277,6 +278,15 @@ previewButtons.forEach((button) => {
   });
 });
 
+themeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const theme = button.dataset.theme;
+    themeButtons.forEach((btn) => btn.classList.remove("active"));
+    button.classList.add("active");
+    document.body.dataset.theme = theme;
+  });
+});
+
 customCssInput.addEventListener("input", () => {
   customCssInput.dataset.dirty = "true";
 });
@@ -303,7 +313,8 @@ ${bodyContent || "    <!-- No components were added. -->"}
 
 const serializeProject = () => {
   return JSON.stringify({
-    version: 2,
+    version: 3,
+    theme: document.body.dataset.theme || "dark",
     customCss: customCssInput.value,
     blocks: Array.from(canvas.querySelectorAll(".canvas-block")).map((block) => ({
       type: block.dataset.type,
@@ -322,6 +333,11 @@ const loadProject = (data) => {
     canvas.appendChild(newBlock);
   });
   customCssInput.value = data.customCss || "";
+  const theme = data.theme || "dark";
+  document.body.dataset.theme = theme;
+  themeButtons.forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.theme === theme);
+  });
   togglePlaceholder();
   setSelectedBlock(null);
 };
@@ -386,3 +402,6 @@ importInput.addEventListener("change", (event) => {
 });
 
 togglePlaceholder();
+if (themeButtons.length) {
+  themeButtons[0].classList.add("active");
+}

@@ -9,6 +9,12 @@ body.app-body {
   min-height: 100vh;
 }
 
+body.app-body[data-theme="light"] {
+  color-scheme: light;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
 .app-header {
   display: flex;
   justify-content: space-between;
@@ -17,6 +23,11 @@ body.app-body {
   border-bottom: 1px solid rgba(148, 163, 184, 0.2);
   background: #111827;
   gap: 2rem;
+}
+
+body.app-body[data-theme="light"] .app-header {
+  background: #ffffff;
+  border-bottom-color: rgba(15, 23, 42, 0.12);
 }
 
 .app-main {
@@ -35,9 +46,19 @@ body.app-body {
   gap: 1.5rem;
 }
 
+body.app-body[data-theme="light"] .app-panel,
+body.app-body[data-theme="light"] .inspector-panel {
+  background: #ffffff;
+  border-right-color: rgba(15, 23, 42, 0.12);
+}
+
 .inspector-panel {
   border-right: none;
   border-left: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+body.app-body[data-theme="light"] .inspector-panel {
+  border-left-color: rgba(15, 23, 42, 0.12);
 }
 
 .component-list {
@@ -53,6 +74,11 @@ body.app-body {
   cursor: grab;
 }
 
+body.app-body[data-theme="light"] .component-item {
+  background: #f1f5f9;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
 .component-item:active {
   cursor: grabbing;
 }
@@ -64,6 +90,12 @@ body.app-body {
   background: rgba(15, 23, 42, 0.9);
   border: 1px solid rgba(148, 163, 184, 0.2);
   color: #cbd5f5;
+}
+
+body.app-body[data-theme="light"] .export-hint {
+  background: #eff6ff;
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #0f172a;
 }
 
 .app-canvas {
@@ -90,6 +122,11 @@ body.app-body {
   margin: 0 auto;
 }
 
+body.app-body[data-theme="light"] .canvas-dropzone {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.2);
+}
+
 .canvas-dropzone[data-preview="desktop"] {
   max-width: 1100px;
 }
@@ -107,6 +144,10 @@ body.app-body {
   background: rgba(15, 23, 42, 0.75);
 }
 
+body.app-body[data-theme="light"] .canvas-dropzone.is-dragging {
+  background: #f1f5f9;
+}
+
 .canvas-placeholder {
   border-radius: 0.75rem;
   border: 1px dashed rgba(148, 163, 184, 0.4);
@@ -117,12 +158,22 @@ body.app-body {
   gap: 0.5rem;
 }
 
+body.app-body[data-theme="light"] .canvas-placeholder {
+  color: #64748b;
+  border-color: rgba(15, 23, 42, 0.2);
+}
+
 .canvas-block {
   border-radius: 1rem;
   border: 1px solid rgba(148, 163, 184, 0.2);
   background: #0f172a;
   padding: 1rem;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.app-body[data-theme="light"] .canvas-block {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.12);
 }
 
 .canvas-block.is-selected {
@@ -158,6 +209,10 @@ body.app-body {
   color: #94a3b8;
 }
 
+body.app-body[data-theme="light"] .canvas-block__header {
+  color: #64748b;
+}
+
 .canvas-block__meta {
   font-size: 0.75rem;
   text-transform: none;
@@ -167,6 +222,10 @@ body.app-body {
   padding: 1rem;
   border-radius: 0.75rem;
   background: #111827;
+}
+
+body.app-body[data-theme="light"] .canvas-block__body {
+  background: #f8fafc;
 }
 
 .canvas-block.bg-light .canvas-block__body {
@@ -194,9 +253,18 @@ body.app-body {
   border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
+body.app-body[data-theme="light"] .inspector-label {
+  background: #f1f5f9;
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
 .inspector-divider {
   height: 1px;
   background: rgba(148, 163, 184, 0.2);
+}
+
+body.app-body[data-theme="light"] .inspector-divider {
+  background: rgba(15, 23, 42, 0.12);
 }
 
 textarea.form-control,
@@ -206,15 +274,32 @@ select.form-select {
   border: 1px solid rgba(148, 163, 184, 0.3);
 }
 
+body.app-body[data-theme="light"] textarea.form-control,
+body.app-body[data-theme="light"] select.form-select {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.2);
+}
+
 .modal-content {
   background: #0f172a;
   color: #f8fafc;
+}
+
+body.app-body[data-theme="light"] .modal-content {
+  background: #ffffff;
+  color: #0f172a;
 }
 
 .btn-group .btn.active {
   background: #38bdf8;
   color: #0f172a;
   border-color: #38bdf8;
+}
+
+body.app-body[data-theme="light"] .btn-outline-light {
+  color: #0f172a;
+  border-color: rgba(15, 23, 42, 0.2);
 }
 
 @media (max-width: 1200px) {
@@ -232,5 +317,10 @@ select.form-select {
   .inspector-panel {
     border: none;
     border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  body.app-body[data-theme="light"] .app-panel,
+  body.app-body[data-theme="light"] .inspector-panel {
+    border-bottom-color: rgba(15, 23, 42, 0.12);
   }
 }
