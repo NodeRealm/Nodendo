@@ -36,53 +36,60 @@
 
     <main class="app-main">
       <aside class="app-panel">
-        <h2 class="h6 text-uppercase">Components</h2>
+        <h2 class="h6 text-uppercase">Node Blocks</h2>
+        <p class="text-secondary small mb-3">Blocks define layout containers like sections and rows.</p>
         <div class="component-list">
-          <div class="component-item" draggable="true" data-template="section">
+          <div class="component-item" draggable="true" data-template="section" data-group="block">
             <span class="badge bg-primary">Section</span>
             <p class="mb-0">Full-width section container</p>
           </div>
-          <div class="component-item" draggable="true" data-template="row-2">
+          <div class="component-item" draggable="true" data-template="row-2" data-group="block">
             <span class="badge bg-info text-dark">Row (2 columns)</span>
             <p class="mb-0">Responsive two column grid</p>
           </div>
-          <div class="component-item" draggable="true" data-template="hero">
-            <span class="badge bg-success">Hero</span>
-            <p class="mb-0">Hero banner section</p>
-          </div>
-          <div class="component-item" draggable="true" data-template="navbar">
-            <span class="badge bg-dark">Navbar</span>
-            <p class="mb-0">Navigation header</p>
-          </div>
-          <div class="component-item" draggable="true" data-template="card">
-            <span class="badge bg-info text-dark">Card</span>
-            <p class="mb-0">Content card layout</p>
-          </div>
-          <div class="component-item" draggable="true" data-template="button">
-            <span class="badge bg-primary">Button</span>
-            <p class="mb-0">Primary call-to-action</p>
-          </div>
-          <div class="component-item" draggable="true" data-template="alert">
-            <span class="badge bg-warning text-dark">Alert</span>
-            <p class="mb-0">Status message</p>
-          </div>
-          <div class="component-item" draggable="true" data-template="text">
-            <span class="badge bg-secondary">Text</span>
-            <p class="mb-0">Heading + paragraph block</p>
-          </div>
-          <div class="component-item" draggable="true" data-template="image">
-            <span class="badge bg-secondary">Image</span>
-            <p class="mb-0">Responsive image block</p>
-          </div>
-          <div class="component-item" draggable="true" data-template="footer">
-            <span class="badge bg-dark">Footer</span>
-            <p class="mb-0">Footer with links</p>
+        </div>
+        <div class="component-group">
+          <h2 class="h6 text-uppercase">Node Packs</h2>
+          <p class="text-secondary small mb-3">Drop packs inside blocks to fill them.</p>
+          <div class="component-list">
+            <div class="component-item" draggable="true" data-template="hero" data-group="pack">
+              <span class="badge bg-success">Hero</span>
+              <p class="mb-0">Hero banner section</p>
+            </div>
+            <div class="component-item" draggable="true" data-template="navbar" data-group="pack">
+              <span class="badge bg-dark">Navbar</span>
+              <p class="mb-0">Navigation header</p>
+            </div>
+            <div class="component-item" draggable="true" data-template="card" data-group="pack">
+              <span class="badge bg-info text-dark">Card</span>
+              <p class="mb-0">Content card layout</p>
+            </div>
+            <div class="component-item" draggable="true" data-template="button" data-group="pack">
+              <span class="badge bg-primary">Button</span>
+              <p class="mb-0">Primary call-to-action</p>
+            </div>
+            <div class="component-item" draggable="true" data-template="alert" data-group="pack">
+              <span class="badge bg-warning text-dark">Alert</span>
+              <p class="mb-0">Status message</p>
+            </div>
+            <div class="component-item" draggable="true" data-template="text" data-group="pack">
+              <span class="badge bg-secondary">Text</span>
+              <p class="mb-0">Heading + paragraph block</p>
+            </div>
+            <div class="component-item" draggable="true" data-template="image" data-group="pack">
+              <span class="badge bg-secondary">Image</span>
+              <p class="mb-0">Responsive image block</p>
+            </div>
+            <div class="component-item" draggable="true" data-template="footer" data-group="pack">
+              <span class="badge bg-dark">Footer</span>
+              <p class="mb-0">Footer with links</p>
+            </div>
           </div>
         </div>
         <div class="export-hint">
           <h3 class="h6">Tip</h3>
           <p class="mb-0">
-            Click any block to see actions and switch backgrounds. Text is editable inline.
+            Drop packs inside blocks, then click a block to adjust its background.
           </p>
         </div>
       </aside>
@@ -90,12 +97,12 @@
       <section class="app-canvas">
         <div class="canvas-toolbar">
           <span class="text-secondary">Canvas</span>
-          <span class="text-secondary">Drag components here or reorder by dragging blocks.</span>
+          <span class="text-secondary">Drag blocks here, then drop packs inside them.</span>
         </div>
         <div id="canvas" class="canvas-dropzone" data-preview="desktop">
           <div class="canvas-placeholder">
             <h2 class="h5">Start building</h2>
-            <p class="mb-0">Drag Bootstrap blocks from the left panel.</p>
+            <p class="mb-0">Drag node blocks from the left panel.</p>
           </div>
         </div>
       </section>

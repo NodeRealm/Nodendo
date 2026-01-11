@@ -19,7 +19,8 @@ Drag and drop Bootstrap editor software.
 2. The installer EXE will be generated in the `dist/` folder (created by Electron Builder).
 
 ## Usage
-- Drag components from the left panel onto the canvas.
+- Drag **Node Blocks** (sections and rows) onto the canvas.
+- Drop **Node Packs** inside blocks to fill the layout.
 - Click any block to edit its background, duplicate it, or move it.
 - Use the **Theme** buttons to switch between light and dark modes.
 - Edit text inline by clicking inside headings or paragraphs.
