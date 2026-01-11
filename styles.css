@@ -1,0 +1,128 @@
+:root {
+  color-scheme: dark;
+}
+
+body.app-body {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: #0b1220;
+  color: #f8fafc;
+  min-height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  background: #111827;
+}
+
+.app-main {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: calc(100vh - 88px);
+}
+
+.app-panel {
+  padding: 1.5rem;
+  border-right: 1px solid rgba(148, 163, 184, 0.2);
+  background: #0f172a;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.component-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.component-item {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  cursor: grab;
+}
+
+.component-item:active {
+  cursor: grabbing;
+}
+
+.export-hint {
+  margin-top: auto;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #cbd5f5;
+}
+
+.app-canvas {
+  padding: 1.5rem 2rem 2.5rem;
+}
+
+.canvas-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.canvas-dropzone {
+  min-height: 600px;
+  border-radius: 1rem;
+  border: 2px dashed rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.4);
+  padding: 2rem;
+  display: grid;
+  gap: 1.5rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.canvas-dropzone.is-dragging {
+  border-color: #38bdf8;
+  background: rgba(15, 23, 42, 0.75);
+}
+
+.canvas-placeholder {
+  border-radius: 0.75rem;
+  border: 1px dashed rgba(148, 163, 184, 0.4);
+  padding: 2rem;
+  text-align: center;
+  color: #cbd5f5;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.canvas-block {
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: #0f172a;
+  padding: 1rem;
+}
+
+.canvas-block__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.canvas-block__body {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: #111827;
+}
+
+textarea.form-control {
+  background: #0f172a;
+  color: #e2e8f0;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.modal-content {
+  background: #0f172a;
+  color: #f8fafc;
+}

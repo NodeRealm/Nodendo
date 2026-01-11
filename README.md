@@ -1,2 +1,24 @@
 # Nodendo
-Drag and drop bootstrap editor software.
+Drag and drop Bootstrap editor software.
+
+## Getting started
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Run the desktop app:
+   ```bash
+   npm start
+   ```
+
+## Build a Windows EXE
+1. Run the Windows packaging script:
+   ```bash
+   npm run dist:win
+   ```
+2. The installer EXE will be generated in the `dist/` folder (created by Electron Builder).
+
+## Usage
+- Drag components from the left panel onto the canvas.
+- Click **Export HTML** to copy or download the generated Bootstrap layout.
+- Click **Clear canvas** to reset the editor.
