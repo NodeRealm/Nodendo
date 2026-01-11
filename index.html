@@ -14,10 +14,18 @@
     <header class="app-header">
       <div>
         <h1 class="h4 mb-1">Nodendo Bootstrap Editor</h1>
-        <p class="text-secondary mb-0">Drag components into the canvas and export HTML.</p>
+        <p class="text-secondary mb-0">Build Bootstrap layouts visually, export HTML, and download projects.</p>
       </div>
-      <div class="d-flex gap-2">
+      <div class="d-flex flex-wrap gap-2 align-items-center">
+        <div class="btn-group" role="group" aria-label="Preview size">
+          <button class="btn btn-outline-light" data-preview="desktop">Desktop</button>
+          <button class="btn btn-outline-light" data-preview="tablet">Tablet</button>
+          <button class="btn btn-outline-light" data-preview="mobile">Mobile</button>
+        </div>
         <button class="btn btn-outline-light" id="clearCanvas">Clear canvas</button>
+        <button class="btn btn-outline-light" id="importProject">Import JSON</button>
+        <input type="file" id="importInput" accept="application/json" hidden />
+        <button class="btn btn-outline-light" id="downloadProject">Download JSON</button>
         <button class="btn btn-primary" id="exportHtml">Export HTML</button>
       </div>
     </header>
@@ -26,6 +34,26 @@
       <aside class="app-panel">
         <h2 class="h6 text-uppercase">Components</h2>
         <div class="component-list">
+          <div class="component-item" draggable="true" data-template="section">
+            <span class="badge bg-primary">Section</span>
+            <p class="mb-0">Full-width section container</p>
+          </div>
+          <div class="component-item" draggable="true" data-template="row-2">
+            <span class="badge bg-info text-dark">Row (2 columns)</span>
+            <p class="mb-0">Responsive two column grid</p>
+          </div>
+          <div class="component-item" draggable="true" data-template="hero">
+            <span class="badge bg-success">Hero</span>
+            <p class="mb-0">Hero banner section</p>
+          </div>
+          <div class="component-item" draggable="true" data-template="navbar">
+            <span class="badge bg-dark">Navbar</span>
+            <p class="mb-0">Navigation header</p>
+          </div>
+          <div class="component-item" draggable="true" data-template="card">
+            <span class="badge bg-info text-dark">Card</span>
+            <p class="mb-0">Content card layout</p>
+          </div>
           <div class="component-item" draggable="true" data-template="button">
             <span class="badge bg-primary">Button</span>
             <p class="mb-0">Primary call-to-action</p>
@@ -34,19 +62,23 @@
             <span class="badge bg-warning text-dark">Alert</span>
             <p class="mb-0">Status message</p>
           </div>
-          <div class="component-item" draggable="true" data-template="card">
-            <span class="badge bg-info text-dark">Card</span>
-            <p class="mb-0">Content card layout</p>
+          <div class="component-item" draggable="true" data-template="text">
+            <span class="badge bg-secondary">Text</span>
+            <p class="mb-0">Heading + paragraph block</p>
           </div>
-          <div class="component-item" draggable="true" data-template="hero">
-            <span class="badge bg-success">Hero</span>
-            <p class="mb-0">Hero banner section</p>
+          <div class="component-item" draggable="true" data-template="image">
+            <span class="badge bg-secondary">Image</span>
+            <p class="mb-0">Responsive image block</p>
+          </div>
+          <div class="component-item" draggable="true" data-template="footer">
+            <span class="badge bg-dark">Footer</span>
+            <p class="mb-0">Footer with links</p>
           </div>
         </div>
         <div class="export-hint">
-          <h3 class="h6">Export tip</h3>
+          <h3 class="h6">Tip</h3>
           <p class="mb-0">
-            The exported HTML includes Bootstrap CDN links. Drop it into any page.
+            Click any block to see actions and switch backgrounds. Text is editable inline.
           </p>
         </div>
       </aside>
@@ -54,15 +86,43 @@
       <section class="app-canvas">
         <div class="canvas-toolbar">
           <span class="text-secondary">Canvas</span>
-          <span class="text-secondary">Drag here to add components</span>
+          <span class="text-secondary">Drag components here or reorder by dragging blocks.</span>
         </div>
-        <div id="canvas" class="canvas-dropzone">
+        <div id="canvas" class="canvas-dropzone" data-preview="desktop">
           <div class="canvas-placeholder">
             <h2 class="h5">Start building</h2>
             <p class="mb-0">Drag Bootstrap blocks from the left panel.</p>
           </div>
         </div>
       </section>
+
+      <aside class="inspector-panel">
+        <h2 class="h6 text-uppercase">Inspector</h2>
+        <div class="inspector-content">
+          <p class="text-secondary" id="inspectorEmpty">Select a block to edit it.</p>
+          <div id="inspectorDetails" hidden>
+            <div class="mb-3">
+              <label class="form-label">Selected block</label>
+              <div id="selectedLabel" class="inspector-label"></div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Background</label>
+              <select class="form-select" id="backgroundSelect">
+                <option value="none">None</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+                <option value="accent">Accent</option>
+              </select>
+            </div>
+            <div class="d-grid gap-2">
+              <button class="btn btn-outline-light" id="duplicateBlock">Duplicate</button>
+              <button class="btn btn-outline-light" id="moveUp">Move up</button>
+              <button class="btn btn-outline-light" id="moveDown">Move down</button>
+              <button class="btn btn-outline-danger" id="deleteBlock">Delete</button>
+            </div>
+          </div>
+        </div>
+      </aside>
     </main>
 
     <div class="modal fade" id="exportModal" tabindex="-1" aria-hidden="true">
